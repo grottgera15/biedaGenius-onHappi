@@ -1,16 +1,17 @@
-package com.musicapp.happi.dataBase;
+package com.musicapp.happi.dataBase.model;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.IndexDirection;
 import org.springframework.data.mongodb.core.index.Indexed;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Album {
    @Id
-    private int id;
-    private int apiId;
+    private String id;
+    private String apiId;
     @Indexed(direction = IndexDirection.ASCENDING)
     private String name;
     private String img;
@@ -22,7 +23,7 @@ public class Album {
   this.tracks = new ArrayList<>();
  }
 
- public Album(int id, int apiId, String name, String img, String realeaseDate, String apiTracks, List<Track> tracks) {
+ public Album(String id, String apiId, String name, String img, String realeaseDate, String apiTracks, List<Track> tracks) {
   this.id = id;
   this.apiId = apiId;
   this.name = name;
@@ -32,11 +33,11 @@ public class Album {
   this.tracks = tracks;
  }
 
- public int getId() {
+ public String getId() {
   return id;
  }
 
- public int getApiId() {
+ public String getApiId() {
   return apiId;
  }
 

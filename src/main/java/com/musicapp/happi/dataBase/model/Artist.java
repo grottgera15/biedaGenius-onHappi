@@ -1,4 +1,4 @@
-package com.musicapp.happi.dataBase;
+package com.musicapp.happi.dataBase.model;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.IndexDirection;
@@ -8,10 +8,10 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import java.util.ArrayList;
 import java.util.List;
 @Document(collection = "ArtistsDataBase")
-public class Artists {
+public class Artist {
     @Id
-    private int id;
-    private int apiId;
+    private String id;
+    private String apiId;
     @Indexed(direction = IndexDirection.ASCENDING)
     private String name;
     private String img;
@@ -20,11 +20,11 @@ public class Artists {
     private String apiAlbumsAddress;
     private List<Album> albums;
 
-    public Artists() {
+    public Artist() {
         this.albums = new ArrayList<>();
     }
 
-    public Artists(int id, int apiId, String name, String img, String apiAddress, String discription, String apiAlbumsAddress, List<Album> albums) {
+    public Artist(String id, String apiId, String name, String img, String apiAddress, String discription, String apiAlbumsAddress, List<Album> albums) {
         this.id = id;
         this.apiId = apiId;
         this.name = name;
@@ -35,11 +35,11 @@ public class Artists {
         this.albums = albums;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public int getApiId() {
+    public String getApiId() {
         return apiId;
     }
 

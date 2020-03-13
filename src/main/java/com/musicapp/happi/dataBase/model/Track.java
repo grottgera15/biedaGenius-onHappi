@@ -1,19 +1,20 @@
-package com.musicapp.happi.dataBase;
+package com.musicapp.happi.dataBase.model;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.IndexDirection;
 import org.springframework.data.mongodb.core.index.Indexed;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 public class Track {
     @Id
-    private int id;
-    private int apiId;
+    private String id;
+    private String apiId;
     @Indexed(direction = IndexDirection.ASCENDING)
     private String name;
     private String lyrics;
     private String apiTrack;
 
-    public Track(int id, int apiId, String name, String lyrics, String apiTrack) {
+    public Track(String id, String apiId, String name, String lyrics, String apiTrack) {
         this.id = id;
         this.apiId = apiId;
         this.name = name;
@@ -21,11 +22,11 @@ public class Track {
         this.apiTrack = apiTrack;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public int getApiId() {
+    public String getApiId() {
         return apiId;
     }
 
