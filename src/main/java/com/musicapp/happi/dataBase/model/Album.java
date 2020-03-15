@@ -23,8 +23,7 @@ public class Album {
   this.tracks = new ArrayList<>();
  }
 
- public Album(String id, String apiId, String name, String img, String realeaseDate, String apiTracks, List<Track> tracks) {
-  this.id = id;
+ public Album(String apiId, String name, String img, String realeaseDate, String apiTracks, List<Track> tracks) {
   this.apiId = apiId;
   this.name = name;
   this.img = img;

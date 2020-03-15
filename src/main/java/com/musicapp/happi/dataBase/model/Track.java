@@ -14,8 +14,7 @@ public class Track {
     private String lyrics;
     private String apiTrack;
 
-    public Track(String id, String apiId, String name, String lyrics, String apiTrack) {
-        this.id = id;
+    public Track(String apiId, String name, String lyrics, String apiTrack) {
         this.apiId = apiId;
         this.name = name;
         this.lyrics = lyrics;

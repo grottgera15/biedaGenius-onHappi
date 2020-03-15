@@ -24,8 +24,7 @@ public class Artist {
         this.albums = new ArrayList<>();
     }
 
-    public Artist(String id, String apiId, String name, String img, String apiAddress, String discription, String apiAlbumsAddress, List<Album> albums) {
-        this.id = id;
+    public Artist(String apiId, String name, String img, String apiAddress, String discription, String apiAlbumsAddress, List<Album> albums) {
         this.apiId = apiId;
         this.name = name;
         this.img = img;
