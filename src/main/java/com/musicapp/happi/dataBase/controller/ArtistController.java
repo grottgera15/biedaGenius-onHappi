@@ -1,26 +1,41 @@
 package com.musicapp.happi.dataBase.controller;
 
 import com.musicapp.happi.dataBase.model.Artist;
-import com.musicapp.happi.dataBase.repository.ArtistsReposiotry;
+import com.musicapp.happi.dataBase.modelResponse.ArtistResponse;
+import com.musicapp.happi.dataBase.repository.ArtistReposiotry;
+import org.springframework.data.domain.Page;
+import org.springframework.data.querydsl.QPageRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.swing.text.html.Option;
-import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/artists")
 public class ArtistController {
-    private ArtistsReposiotry artistRepository;
-    public ArtistController(ArtistsReposiotry artistRepository) {
+    private ArtistReposiotry artistRepository;
+
+    public ArtistController(ArtistReposiotry artistRepository) {
         this.artistRepository = artistRepository;
     }
 
     @GetMapping()
-    public ResponseEntity<?> getAll(){
-        List<Artist> artists = this.artistRepository.findAll();
-        return ResponseEntity.ok(artists);
+    public ResponseEntity<?> getAll() {
+        List<Artist> artistsList = this.artistRepository.findAll();
+        List<ArtistResponse> response = ArtistResponse.getAllArtistMetadata(artistsList);
+
+        return ResponseEntity.ok(response);
     }
+
+    @GetMapping
+    public ResponseEntity<?> getArtists(@RequestParam("size") int size, @RequestParam("page") int page) {
+        Page<Artist> artistsList = this.artistRepository.findAll(QPageRequest.of(page, size));
+        List<ArtistResponse> response = ArtistResponse.getAllArtistMetadata(artistsList);
+
+        return ResponseEntity.ok(response);
+    }
+
+
+
 }
