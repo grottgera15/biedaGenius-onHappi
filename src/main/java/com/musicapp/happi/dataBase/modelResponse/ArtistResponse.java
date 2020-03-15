@@ -1,15 +1,21 @@
 package com.musicapp.happi.dataBase.modelResponse;
 
 import com.musicapp.happi.dataBase.model.Artist;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-
-public class ArtistResponse {
+@Getter
+@Setter
+@NoArgsConstructor
+public class ArtistResponse implements Serializable {
     private String artistName;
     private String artistId;
     private String aritstImg;

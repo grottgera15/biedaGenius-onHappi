@@ -10,11 +10,4 @@ public interface ArtistReposiotry extends MongoRepository <Artist, String> {
     Optional<Artist> findById(String id);
     Optional<Artist> findByApiId(String apiId);
     Optional<Artist> findByName(String name);
-
-    // BY ALBUM
-
-
-
-    // BY TRACK
-
 }

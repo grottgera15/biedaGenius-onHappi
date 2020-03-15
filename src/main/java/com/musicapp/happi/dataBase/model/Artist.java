@@ -3,6 +3,7 @@ package com.musicapp.happi.dataBase.model;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.IndexDirection;
 import org.springframework.data.mongodb.core.index.Indexed;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.ArrayList;
@@ -18,6 +19,7 @@ public class Artist {
     private String apiAddress;
     private String discription;
     private String apiAlbumsAddress;
+    @DBRef
     private List<Album> albums;
 
     public Artist() {

@@ -3,24 +3,44 @@ package com.musicapp.happi.dataBase;
 import com.musicapp.happi.dataBase.model.Album;
 import com.musicapp.happi.dataBase.model.Artist;
 import com.musicapp.happi.dataBase.model.Track;
+import com.musicapp.happi.dataBase.repository.AlbumRepository;
 import com.musicapp.happi.dataBase.repository.ArtistReposiotry;
+import com.musicapp.happi.dataBase.repository.TrackRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
-import java.util.List;
 
 @Component
 public class DbSeeder {
-    private ArtistReposiotry artistReposiotry;
+    private final ArtistReposiotry artistReposiotry;
+    private final TrackRepository trackRepository;
+    private final AlbumRepository albumRepository;
 
-    public DbSeeder(ArtistReposiotry artistReposiotry) {
+    @Autowired
+    public DbSeeder(ArtistReposiotry artistReposiotry, TrackRepository trackRepository, AlbumRepository albumRepository) {
         this.artistReposiotry = artistReposiotry;
+        this.trackRepository = trackRepository;
+        this.albumRepository = albumRepository;
+    }
+
+
+    private void saveArtist(Artist a){
+        a.getAlbums().forEach(
+                x -> trackRepository.saveAll(x.getTracks())
+        );
+
+        albumRepository.saveAll(a.getAlbums());
+
+        artistReposiotry.save(a);
     }
 
     @EventListener(ApplicationReadyEvent.class)
     public void setDbInitData(){
+
+
         Artist alek = new Artist(
                 "alekIdFromApi",
                 "Aleksander 'Dusza Artysty' Szamalek",
@@ -118,9 +138,12 @@ public class DbSeeder {
         );
 
         this.artistReposiotry.deleteAll();
+        this.albumRepository.deleteAll();
+        this.trackRepository.deleteAll();
 
-        //add our hotels to the database
-        List<Artist> artistList = Arrays.asList(alek, maks);
-        this.artistReposiotry.saveAll(artistList);
+        saveArtist(alek);
+        saveArtist(maks);
+
+
     }
 }

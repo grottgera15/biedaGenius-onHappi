@@ -1,5 +1,6 @@
 package com.musicapp.happi.dataBase.controller;
 
+import com.fasterxml.jackson.annotation.JsonGetter;
 import com.musicapp.happi.dataBase.model.Artist;
 import com.musicapp.happi.dataBase.modelResponse.ArtistResponse;
 import com.musicapp.happi.dataBase.repository.ArtistReposiotry;
@@ -27,15 +28,21 @@ public class ArtistController {
 
         return ResponseEntity.ok(response);
     }
-
-    @GetMapping
-    public ResponseEntity<?> getArtists(@RequestParam("size") int size, @RequestParam("page") int page) {
+/*
+    @GetMapping("/debug")
+    public ResponseEntity<?> debug(){
+        return ResponseEntity.ok(this.artistRepository.findAll());
+    }
+*/
+ /*
+ @GetMapping
+    public ResponseEntity<?> getArtistsImRange(@RequestParam("size") int size, @RequestParam("page") int page) {
         Page<Artist> artistsList = this.artistRepository.findAll(QPageRequest.of(page, size));
         List<ArtistResponse> response = ArtistResponse.getAllArtistMetadata(artistsList);
 
         return ResponseEntity.ok(response);
     }
-
+*/
 
 
 }
