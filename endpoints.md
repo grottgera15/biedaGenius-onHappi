@@ -1,18 +1,19 @@
 Endpoints
-=========
+=======
 
-Artist data endpoints
----------------------
+## Artist data endpoints 
 
-1. Operations
-1.1 Get All Artists List
-1.1.1 Path
+
+**1 Get All Artists List**
+**1.1 Path**
 
 *GET /artists*
 
-1.1.2 Response
+    localhost:8080/artists
 
-Response is List of ArtistMetaData:
+**1.2 Response**
+
+Response is LIST of ArtistMetaData:
 
 | Field name | Field type |                description                |
 |:----------:|:----------:|:-----------------------------------------:|
@@ -20,6 +21,8 @@ Response is List of ArtistMetaData:
 |    name    |   String   |              Name of artist.              |
 |     img    |   String   |  URL address of artist background image.  |
 
+
+```yaml
 [
     {
         "id": "5e6ea5b31ff4ae717303aa72",
@@ -32,13 +35,16 @@ Response is List of ArtistMetaData:
         "img": "C:/twojStary.jpg"
     }
 ]
+```
 
-1.2 Get Single Artist Data
-1.1.1 Path
+**2 Get Single Artist Data**
+**2.1 Path**
 
 *GET /artists/{id}*
 
-1.1.2 Response
+    localhost:8080/artists/5e6ea5b31ff4ae717303aa72
+
+**2.2 Response**
 
 Single Artist response
 
@@ -48,9 +54,9 @@ Single Artist response
 |     name    |    String   |              Name of artist.              |
 |     img     |    String   |  URL address of artist background image.  |
 | discription | String      | -                                         |
-| albums      | List<Album> | List of [AlbumsMetaData](AlbumsMetaData)  |
+| albums      | List<Album> | LIST of [AlbumMetaData](#AlbumsMetaData)  |
 
-AlbumsMetaData
+### AlbumMetaData #
 
 |  Field name  | Field type |                description               |
 |:------------:|:----------:|:----------------------------------------:|
@@ -59,6 +65,7 @@ AlbumsMetaData
 |      img     |   String   |  URL address of album background image.  |
 | realeaseDate |   String   |           In format: dd/mm/yyyy          |
 
+```yaml
 {
     "id": "5e6ea5b31ff4ae717303aa72",
     "name": "Aleksander 'Dusza Artysty' Szamalek",
@@ -79,6 +86,76 @@ AlbumsMetaData
         }
     ]
 }
+```
 
-Album data response
--------------------
+## Album data response
+
+**1. Path**
+   
+*GET /album/{id}*
+
+    localhost:8080/5e6ea5b31ff4ae717303aa70
+
+**2. Response**
+
+Single Album response
+
+|  Field name  |      Field type     |                description               |
+|:------------:|:-------------------:|:----------------------------------------:|
+|      id      |        String       | Unique ID that define Album in dataBase. |
+|     name     |        String       |              Name of Album.              |
+|      img     |        String       |  URL address of album background image.  |
+| realeaseDate |        String       |           In format: dd/mm/yyyy          |
+|    tracks    | List<TrackMetaData> |           List of [TrackMetaData](#TrackMetaData)          |
+
+### TrackMetaData #
+
+| Field name | Field type |                description               |
+|:----------:|:----------:|:----------------------------------------:|
+|     id     |   String   | Unique ID that define Track in dataBase. |
+|    name    |   String   |              Name of Track.              |
+
+```yuml
+{
+    "id": "5e6ea5b31ff4ae717303aa70",
+    "name": "ONA MA JUSZ MOKRO. MOOOOOODRDO",
+    "img": "C:/onaMaMokro.jp100%",
+    "realeaseDate": "12/06/1999",
+    "tracks": [
+        {
+            "id": "5e6ea5b31ff4ae717303aa6d",
+            "name": "Wchodze bez pukania"
+        },
+        {
+            "id": "5e6ea5b31ff4ae717303aa6e",
+            "name": "z Papi do Japi"
+        }
+    ]
+}
+```
+
+## Track data response
+
+1. Path
+
+*GET /track/{id}*
+
+    localhost:8080/track/5e6ea5b31ff4ae717303aa6d
+
+2. Response
+
+Single Track response
+
+| Field name | Field type |                description               |
+|:----------:|:----------:|:----------------------------------------:|
+|     id     |   String   | Unique ID that define Track in dataBase. |
+|    name    |   String   |              Name of Track.              |
+|   lyrics   |   String   |              lyrics of song.             |
+
+```yuml
+{
+    "id": "5e6ea5b31ff4ae717303aa6d",
+    "name": "Wchodze bez pukania",
+    "lyrics": "Wchodze bez pukania, czas to jest jebania, ona MORDO ma jusz mokro, nawet sekunde nie miala wilgotno. joł"
+}
+```
