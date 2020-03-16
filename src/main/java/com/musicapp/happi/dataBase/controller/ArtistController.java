@@ -37,6 +37,7 @@ public class ArtistController {
         return ResponseEntity.ok(this.artistRepository.findAll());
     }
 */
+
  /*
  @GetMapping
     public ResponseEntity<?> getArtistsImRange(@RequestParam("size") int size, @RequestParam("page") int page) {

@@ -16,12 +16,15 @@ public class Artist {
     @Id
     @JsonView(View.metaDataArtist.class)
     private String id;
+
     @JsonIgnore
     private String apiId;
 
     @Indexed(direction = IndexDirection.ASCENDING)
     @JsonView(View.metaDataArtist.class)
     private String name;
+
+
 
     @JsonView(View.metaDataArtist.class)
     private String img;
