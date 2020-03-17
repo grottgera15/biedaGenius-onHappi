@@ -54,7 +54,12 @@ public class HappiRequest implements RequestTemplate {
     public void  getResponse(HappiDataTransferObject data) {
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<HappiDataTransferObject> response = restTemplate.getForEntity(requestUrlAddress(), HappiDataTransferObject.class, apiParams);
+        data = response.getBody();
+    }
 
+    public void getResponse(HappiDataTransferObject data, String uri){
+        RestTemplate restTemplate = new RestTemplate();
+        ResponseEntity<HappiDataTransferObject> response = restTemplate.getForEntity(uri, HappiDataTransferObject.class);
         data = response.getBody();
     }
 }
