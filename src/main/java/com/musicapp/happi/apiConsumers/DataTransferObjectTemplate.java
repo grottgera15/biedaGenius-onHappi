@@ -1,4 +1,6 @@
 package com.musicapp.happi.apiConsumers;
 
-public interface DataTransferObjectTemplate {
+import org.springframework.http.ResponseEntity;
+
+public interface DataTransferObjectTemplate{
 }

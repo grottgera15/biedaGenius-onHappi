@@ -7,6 +7,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
@@ -22,20 +23,38 @@ public class HappiRequest implements RequestTemplate {
     private Map<String, String> apiParams;
     private Pair<String, String> apikey = new Pair<>("apikey", "4728a2ukk9fAUKeoYWXbYPiQQ6YfAJNb60xRXSIwt3BITlwycdg2rVxH");
 
-    public HappiRequest(List<String> pathParams, Map<String, String> apiParams) {
+    public HappiRequest(String address, List<String> pathParams, Map<String, String> apiParams) {
+        this.address = address;
         this.pathParams = pathParams;
         this.apiParams = apiParams;
+        this.apiParams.put(apikey.getKey(), apikey.getValue());
     }
 
     @Override
     public String requestUrlAddress(){
-        RestTemplate restTemplate = new RestTemplate();
+        return address + addPathParamsToUrl(pathParams);
+    }
 
-        return  null;
+    private static String addPathParamsToUrl(List<String> pathParams) {
+        StringBuilder result = new StringBuilder();
+
+        for(String param : pathParams){
+            if(param == pathParams.get(pathParams.size()-1)){
+                result.append(param);
+            }else{
+                result.append(param)
+                      .append("/");
+            }
+        }
+
+        return result.toString();
     }
 
     @Override
-    public DataTransferObjectTemplate getResponse() {
-        return null;
+    public void  getResponse(HappiDataTransferObject data) {
+        RestTemplate restTemplate = new RestTemplate();
+        ResponseEntity<HappiDataTransferObject> response = restTemplate.getForEntity(requestUrlAddress(), HappiDataTransferObject.class, apiParams);
+
+        data = response.getBody();
     }
 }
