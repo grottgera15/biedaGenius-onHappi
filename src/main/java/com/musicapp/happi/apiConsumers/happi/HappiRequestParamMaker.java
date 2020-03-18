@@ -34,7 +34,7 @@ public class HappiRequestParamMaker {
 
         HappiRequest happiRequest = new HappiRequest(pathParams, apiParams);
 
-        ResponseEntity<SearchArtist> response = happiRequest.getResponse();
+//        ResponseEntity<SearchArtist> response = happiRequest.getResponse();
 
         return null;
     }

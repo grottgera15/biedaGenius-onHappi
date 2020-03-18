@@ -3,6 +3,7 @@ package com.musicapp.happi.dataBase.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonView;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.IndexDirection;
@@ -11,6 +12,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 @Getter
 @Setter
+@NoArgsConstructor
 @Document(collection = "Tracks")
 public class Track {
     @Id
@@ -29,6 +31,11 @@ public class Track {
     private String copyright_notice;
 
     private String copyright_text;
+
+    public Track(String name, String lyrics) {
+        this.name = name;
+        this.lyrics = lyrics;
+    }
 
     public Track(String name, String lyrics, String copyright_label, String copyright_notice, String copyright_text) {
         this.name = name;

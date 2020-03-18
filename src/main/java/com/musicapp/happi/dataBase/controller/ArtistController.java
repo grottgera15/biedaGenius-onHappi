@@ -3,7 +3,7 @@ package com.musicapp.happi.dataBase.controller;
 import com.fasterxml.jackson.annotation.JsonView;
 import com.musicapp.happi.dataBase.model.Artist;
 import com.musicapp.happi.dataBase.model.View;
-import com.musicapp.happi.dataBase.modelResponse.ArtistsResponse;
+
 import com.musicapp.happi.dataBase.repository.ArtistReposiotry;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
