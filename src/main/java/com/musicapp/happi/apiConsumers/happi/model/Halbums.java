@@ -14,7 +14,7 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Halbums implements DataTransferObjectTemplate {
+public class Halbums extends DataTransferObjectTemplate {
     private String aritst;
 
     private Integer length;

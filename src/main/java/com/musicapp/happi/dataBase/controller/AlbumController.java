@@ -7,7 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/album")
+@RequestMapping("/albums")
 public class AlbumController {
     private AlbumRepository albumRepository;
 

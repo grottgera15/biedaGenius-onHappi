@@ -10,7 +10,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class SearchArtist implements DataTransferObjectTemplate {
+public class SearchArtist extends DataTransferObjectTemplate {
     private String artist;
 
     private String api_artist;

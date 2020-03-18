@@ -18,20 +18,22 @@ import java.util.Map;
 @NoArgsConstructor
 @AllArgsConstructor
 public class HappiRequest implements RequestTemplate {
-    private String address = new String("https://api.happi.dev/v1/music/");
+    private String address = new String("https://api.happi.dev/v1/music");
     private List<String> pathParams;
     private Map<String, String> apiParams;
     private Pair<String, String> apikey = new Pair<>("apikey", "4728a2ukk9fAUKeoYWXbYPiQQ6YfAJNb60xRXSIwt3BITlwycdg2rVxH");
 
-    public HappiRequest(String address, List<String> pathParams, Map<String, String> apiParams) {
-        this.address = address;
+    public HappiRequest(List<String> pathParams, Map<String, String> apiParams) {
         this.pathParams = pathParams;
         this.apiParams = apiParams;
-        this.apiParams.put(apikey.getKey(), apikey.getValue());
     }
 
     private static String addPathParamsToUrl(List<String> pathParams) {
         StringBuilder result = new StringBuilder();
+
+        if(pathParams.size() != 0){
+            result.append("/");
+        }
 
         for(String param : pathParams){
             if(param == pathParams.get(pathParams.size()-1)){
@@ -45,21 +47,31 @@ public class HappiRequest implements RequestTemplate {
         return result.toString();
     }
 
+    private void addAuthorizationToApiParams(Map<String, String> apiParams){
+        apiParams.put(apikey.getKey(), apikey.getValue());
+    }
+
     @Override
     public String requestUrlAddress(){
         return address + addPathParamsToUrl(pathParams);
     }
 
     @Override
-    public void  getResponse(DataTransferObjectTemplate data) {
+    public ResponseEntity<DataTransferObjectTemplate>  getResponse() {
         RestTemplate restTemplate = new RestTemplate();
+
+        addAuthorizationToApiParams(apiParams);
+
         ResponseEntity<DataTransferObjectTemplate> response = restTemplate.getForEntity(requestUrlAddress(), DataTransferObjectTemplate.class, apiParams);
-        data = response.getBody();
+        return response;
     }
 
-    public void getResponse(DataTransferObjectTemplate data, String uri){
+    public ResponseEntity<DataTransferObjectTemplate> getResponse(String uri){
         RestTemplate restTemplate = new RestTemplate();
+
+        addAuthorizationToApiParams(apiParams);
+
         ResponseEntity<DataTransferObjectTemplate> response = restTemplate.getForEntity(uri, DataTransferObjectTemplate.class, apiParams);
-        data = response.getBody();
+        return response;
     }
 }

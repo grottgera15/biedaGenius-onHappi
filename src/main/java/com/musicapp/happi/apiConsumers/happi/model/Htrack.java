@@ -11,7 +11,7 @@ import lombok.Setter;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Htrack implements DataTransferObjectTemplate {
+public class Htrack extends DataTransferObjectTemplate {
     @JsonProperty("name")
     private String track;
 

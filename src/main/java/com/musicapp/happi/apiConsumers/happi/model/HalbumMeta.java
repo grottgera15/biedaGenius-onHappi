@@ -11,6 +11,6 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class HalbumMeta implements DataTransferObjectTemplate {
+public class HalbumMeta extends DataTransferObjectTemplate {
     private String api_album;
 }

@@ -9,7 +9,7 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Htracks implements DataTransferObjectTemplate {
+public class Htracks extends DataTransferObjectTemplate {
 
     private String label;
 

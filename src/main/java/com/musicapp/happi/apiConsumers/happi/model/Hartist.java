@@ -12,7 +12,7 @@ import lombok.Setter;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Hartist implements DataTransferObjectTemplate {
+public class Hartist extends DataTransferObjectTemplate {
     @JsonProperty("name")
     private String artist;
 

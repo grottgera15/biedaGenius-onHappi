@@ -11,7 +11,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Halbum implements DataTransferObjectTemplate {
+public class Halbum extends DataTransferObjectTemplate {
     @JsonProperty("name")
     private String album;
 
