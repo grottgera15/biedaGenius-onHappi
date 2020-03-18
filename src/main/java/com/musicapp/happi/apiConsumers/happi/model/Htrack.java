@@ -1,6 +1,5 @@
 package com.musicapp.happi.apiConsumers.happi.model;
 
-
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.musicapp.happi.apiConsumers.DataTransferObjectTemplate;
 import lombok.AllArgsConstructor;
@@ -10,13 +9,17 @@ import lombok.Setter;
 
 @Setter
 @Getter
-@NoArgsConstructor
 @AllArgsConstructor
-public class Hartist implements DataTransferObjectTemplate {
+@NoArgsConstructor
+public class Htrack implements DataTransferObjectTemplate {
     @JsonProperty("name")
-    private String artist;
+    private String track;
 
-    private String spotify;
+    private String lyrics;
 
-    private String api_albums;
+    private String copyright_label;
+
+    private String copyright_notice;
+
+    private String copyright_text;
 }

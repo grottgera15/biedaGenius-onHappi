@@ -24,8 +24,17 @@ public class Track {
     @JsonView({View.allDataTrack.class})
     private String lyrics;
 
-    public Track(String name, String lyrics) {
+    private String copyright_label;
+
+    private String copyright_notice;
+
+    private String copyright_text;
+
+    public Track(String name, String lyrics, String copyright_label, String copyright_notice, String copyright_text) {
         this.name = name;
         this.lyrics = lyrics;
+        this.copyright_label = copyright_label;
+        this.copyright_notice = copyright_notice;
+        this.copyright_text = copyright_text;
     }
 }

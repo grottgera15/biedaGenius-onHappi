@@ -1,8 +1,6 @@
 package com.musicapp.happi.apiConsumers.happi.model;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.musicapp.happi.apiConsumers.happi.HappiDataTransferObject;
+import com.musicapp.happi.apiConsumers.DataTransferObjectTemplate;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,7 +10,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class SearchArtist extends HappiDataTransferObject {
+public class SearchArtist implements DataTransferObjectTemplate {
     private String artist;
 
     private String api_artist;

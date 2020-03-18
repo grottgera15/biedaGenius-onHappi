@@ -1,4 +1,4 @@
 package com.musicapp.happi.apiConsumers;
 
-public class ArtistBuilder {
+public class ArtistSaver {
 }

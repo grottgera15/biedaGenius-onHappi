@@ -30,11 +30,6 @@ public class HappiRequest implements RequestTemplate {
         this.apiParams.put(apikey.getKey(), apikey.getValue());
     }
 
-    @Override
-    public String requestUrlAddress(){
-        return address + addPathParamsToUrl(pathParams);
-    }
-
     private static String addPathParamsToUrl(List<String> pathParams) {
         StringBuilder result = new StringBuilder();
 
@@ -51,15 +46,20 @@ public class HappiRequest implements RequestTemplate {
     }
 
     @Override
-    public void  getResponse(HappiDataTransferObject data) {
+    public String requestUrlAddress(){
+        return address + addPathParamsToUrl(pathParams);
+    }
+
+    @Override
+    public void  getResponse(DataTransferObjectTemplate data) {
         RestTemplate restTemplate = new RestTemplate();
-        ResponseEntity<HappiDataTransferObject> response = restTemplate.getForEntity(requestUrlAddress(), HappiDataTransferObject.class, apiParams);
+        ResponseEntity<DataTransferObjectTemplate> response = restTemplate.getForEntity(requestUrlAddress(), DataTransferObjectTemplate.class, apiParams);
         data = response.getBody();
     }
 
-    public void getResponse(HappiDataTransferObject data, String uri){
+    public void getResponse(DataTransferObjectTemplate data, String uri){
         RestTemplate restTemplate = new RestTemplate();
-        ResponseEntity<HappiDataTransferObject> response = restTemplate.getForEntity(uri, HappiDataTransferObject.class);
+        ResponseEntity<DataTransferObjectTemplate> response = restTemplate.getForEntity(uri, DataTransferObjectTemplate.class, apiParams);
         data = response.getBody();
     }
 }
