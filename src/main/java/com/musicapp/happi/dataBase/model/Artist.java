@@ -26,13 +26,13 @@ public class Artist {
 
     @Indexed(direction = IndexDirection.ASCENDING)
     @JsonView(View.metaDataArtist.class)
-    private String name;
+    private String artistName;
 
     @JsonView(View.metaDataArtist.class)
-    private String img;
+    private String artistImg;
 
     @JsonView(View.allDataArtist.class)
-    private String description;
+    private String artistDescription;
 
     @JsonView(View.allDataArtist.class)
     private String spotify;
@@ -47,9 +47,9 @@ public class Artist {
     }
 
     public Artist(String name, String img, String description, String spotify, List<Album> albums) {
-        this.name = name;
-        this.img = img;
-        this.description = description;
+        this.artistName = name;
+        this.artistImg = img;
+        this.artistDescription = description;
         this.spotify = spotify;
         this.albums = albums;
     }

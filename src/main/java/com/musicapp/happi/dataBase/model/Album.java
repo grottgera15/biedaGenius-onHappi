@@ -28,13 +28,13 @@ public class Album {
 
     @Indexed(direction = IndexDirection.ASCENDING)
     @JsonView({View.allDataAlbum.class, View.allDataArtist.class})
-    private String name;
+    private String albumName;
 
     @JsonView({View.allDataAlbum.class, View.allDataArtist.class})
-    private String img;
+    private String albumImg;
 
     @JsonView(View.allDataAlbum.class)
-    private String description;
+    private String albumDescription;
 
     @JsonView({View.allDataAlbum.class, View.allDataArtist.class})
     private String realeaseDate;
@@ -49,9 +49,9 @@ public class Album {
  }
 
  public Album(String name, String img, String description, String realeaseDate, List<Track> tracks) {
-  this.name = name;
-  this.img = img;
-  this.description = description;
+  this.albumName = name;
+  this.albumImg = img;
+  this.albumDescription = description;
   this.realeaseDate = realeaseDate;
   this.tracks = tracks;
  }

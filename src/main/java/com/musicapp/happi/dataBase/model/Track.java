@@ -21,7 +21,7 @@ public class Track {
 
     @Indexed(direction = IndexDirection.ASCENDING)
     @JsonView({View.allDataTrack.class, View.allDataAlbum.class})
-    private String name;
+    private String trackName;
 
     @JsonView({View.allDataTrack.class})
     private String lyrics;
@@ -33,12 +33,12 @@ public class Track {
     private String copyright_text;
 
     public Track(String name, String lyrics) {
-        this.name = name;
+        this.trackName = name;
         this.lyrics = lyrics;
     }
 
     public Track(String name, String lyrics, String copyright_label, String copyright_notice, String copyright_text) {
-        this.name = name;
+        this.trackName = name;
         this.lyrics = lyrics;
         this.copyright_label = copyright_label;
         this.copyright_notice = copyright_notice;
