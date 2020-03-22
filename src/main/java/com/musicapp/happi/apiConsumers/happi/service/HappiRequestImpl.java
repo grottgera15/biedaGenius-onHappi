@@ -1,5 +1,7 @@
-package com.musicapp.happi.apiConsumers.happi;
+package com.musicapp.happi.apiConsumers.happi.service;
 
+import com.musicapp.happi.apiConsumers.happi.HappiRequest;
+import com.musicapp.happi.apiConsumers.happi.Properties;
 import com.musicapp.happi.apiConsumers.happi.model.DTO.AlbumFull;
 import com.musicapp.happi.apiConsumers.happi.model.DTO.ArtistFull;
 import com.musicapp.happi.apiConsumers.happi.model.DTO.ArtistList;
@@ -14,7 +16,7 @@ import java.util.List;
 import java.util.Map;
 
 @Service
-public class HappiRequestImpl implements HappiRequest{
+public class HappiRequestImpl implements HappiRequest {
     private final Properties properties;
 
     @Autowired
