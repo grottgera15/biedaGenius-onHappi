@@ -14,17 +14,14 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 public class Halbum {
-    @JsonProperty("albumName")
     private String album;
 
-    @JsonProperty("albumImg")
     private String cover;
 
     private String api_album;
 
     private String api_tracks;
 
-    @JsonProperty("realeaseDate")
     private String realease;
 
     private List<Htrack> tracks;

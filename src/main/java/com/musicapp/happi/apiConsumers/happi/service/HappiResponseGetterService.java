@@ -1,4 +1,4 @@
-package com.musicapp.happi.apiConsumers.happi;
+package com.musicapp.happi.apiConsumers.happi.service;
 
 import com.musicapp.happi.apiConsumers.happi.model.DTO.AlbumFull;
 import com.musicapp.happi.apiConsumers.happi.model.DTO.ArtistFull;
@@ -9,7 +9,8 @@ import org.springframework.http.ResponseEntity;
 import java.util.List;
 import java.util.Map;
 
-public interface HappiRequest {
+//api consumer - constructing  uri and sending GET request
+public interface HappiResponseGetterService {
     public abstract String requestUrlAddress(List<String> pathParams);
     public abstract ResponseEntity<ArtistList> getResponseArtistList(Map<String,String> apiParams);
     public abstract ResponseEntity<AlbumFull> getResponseAlbum(String api_album);

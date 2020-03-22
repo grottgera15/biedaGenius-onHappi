@@ -14,12 +14,10 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 public class Hartist {
-    @JsonProperty("artistName")
     private String artist;
 
     private String api_artist;
 
-    @JsonProperty("artistImg")
     private String cover;
 
     private String spotify;

@@ -3,6 +3,7 @@ plugins {
     id 'io.spring.dependency-management' version '1.0.9.RELEASE'
     id 'java'
     id 'io.freefair.lombok' version "5.0.0-rc6"
+    id 'net.ltgt.apt' version '0.8'
 }
 
 group = 'com.musicApp'
@@ -31,6 +32,9 @@ dependencies {
         exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
     }
 
+    compile 'org.mapstruct:mapstruct:1.3.1.Final'
+
+    apt 'org.mapstruct:mapstruct-processor:1.3.1.Final'
 }
 
 
