@@ -17,7 +17,6 @@ public interface ArtistMapper {
 
     @Mapping(source = "artist", target = "artistName")
     @Mapping(source = "cover", target = "artistImg")
-
     Artist hartistToArtist(Hartist hartist);
 
     @Mapping(source = "album", target = "albumName")

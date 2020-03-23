@@ -16,6 +16,10 @@ public class Htrack {
 
     private String api_lyrics;
 
+    private String api_track;
+
+    private boolean haslyrics;
+
     private String lyrics;
 
     private String copyright_label;

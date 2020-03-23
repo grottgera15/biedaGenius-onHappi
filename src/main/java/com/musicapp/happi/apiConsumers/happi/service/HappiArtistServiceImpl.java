@@ -25,7 +25,6 @@ public class HappiArtistServiceImpl implements  HappiArtistService {
 
     @Override
     public Hartist getHartistByName(String artistName){
-        Artist artist = new Artist();
 
         Hartist hArtist = new Hartist();
 
@@ -42,19 +41,34 @@ public class HappiArtistServiceImpl implements  HappiArtistService {
 
     private void getTracks(List<Halbum> albumList) {
         for(Halbum album : albumList){
-            List<Htrack> trackList = new ArrayList<>();
-            for(Htrack track : album.getTracks()){
-                track = happiResponse.getResponseTrack(track.getApi_lyrics())
-                                     .getBody()
-                                     .getResult();
-                trackList.add(track);
+            List<Htrack> result = new ArrayList<>();
+            List<Htrack> trackList = happiResponse.getResponseAlbum(album.getApi_tracks())
+                                                  .getBody()
+                                                  .getResult()
+                                                  .getTracks();
+            for(Htrack track : trackList){
+               if(track.isHaslyrics() == true){
+                   track = happiResponse.getResponseTrack(track.getApi_lyrics())
+                                        .getBody()
+                                        .getResult();
+               }else{
+                   track = happiResponse.getResponseTrack(track.getApi_track())
+                           .getBody()
+                           .getResult();
+                   track.setLyrics("No lyrics found :< sry m8");
+               }
+                result.add(track);
             }
-            album.setTracks(trackList);
+            album.setTracks(result);
         }
     }
 
     private List<Halbum> getAlbumList(Hartist hArtist) {
-        List<Halbum> albumList = new ArrayList<>();
+        List<Halbum> albumList = happiResponse.getResponseArtist(hArtist.getApi_albums())
+                                              .getBody()
+                                              .getResult()
+                                              .getAlbums();
+
         for(Halbum album : hArtist.getAlbums()){
             album = happiResponse.getResponseAlbum(album.getApi_album())
                                  .getBody()
