@@ -3,6 +3,10 @@ package com.musicapp.happi.dataBase.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonView;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.IndexDirection;
 import org.springframework.data.mongodb.core.index.Indexed;
@@ -14,27 +18,26 @@ import java.awt.image.VolatileImage;
 import java.util.ArrayList;
 import java.util.List;
 
+@Getter
+@Setter
 @Document(collection = "Albums")
 public class Album {
    @Id
    @JsonView({View.allDataAlbum.class, View.allDataArtist.class})
     private String id;
 
-   @JsonIgnore
-    private String apiId;
-
     @Indexed(direction = IndexDirection.ASCENDING)
     @JsonView({View.allDataAlbum.class, View.allDataArtist.class})
-    private String name;
+    private String albumName;
 
     @JsonView({View.allDataAlbum.class, View.allDataArtist.class})
-    private String img;
+    private String albumImg;
+
+    @JsonView(View.allDataAlbum.class)
+    private String albumDescription;
 
     @JsonView({View.allDataAlbum.class, View.allDataArtist.class})
     private String realeaseDate;
-
-    @JsonIgnore
-    private String apiTracks;
 
     @DBRef
     @JsonView(View.allDataAlbum.class)
@@ -45,40 +48,11 @@ public class Album {
   this.tracks = new ArrayList<>();
  }
 
- public Album(String apiId, String name, String img, String realeaseDate, String apiTracks, List<Track> tracks) {
-  this.apiId = apiId;
-  this.name = name;
-  this.img = img;
+ public Album(String name, String img, String description, String realeaseDate, List<Track> tracks) {
+  this.albumName = name;
+  this.albumImg = img;
+  this.albumDescription = description;
   this.realeaseDate = realeaseDate;
-  this.apiTracks = apiTracks;
   this.tracks = tracks;
- }
-
- public String getId() {
-  return id;
- }
-
- public String getApiId() {
-  return apiId;
- }
-
- public String getName() {
-  return name;
- }
-
- public String getImg() {
-  return img;
- }
-
- public String getRealeaseDate() {
-  return realeaseDate;
- }
-
- public String getApiTracks() {
-  return apiTracks;
- }
-
- public List<Track> getTracks() {
-  return tracks;
  }
 }
