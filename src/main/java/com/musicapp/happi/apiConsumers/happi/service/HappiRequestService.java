@@ -1,6 +1,7 @@
 package com.musicapp.happi.apiConsumers.happi.service;
 
 import com.musicapp.happi.apiConsumers.happi.model.DTO.ArtistList;
+import jdk.internal.jline.internal.Nullable;
 import org.springframework.http.ResponseEntity;
 
 //Interface to handle api and path params to send request
