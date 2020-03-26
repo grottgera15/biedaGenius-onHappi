@@ -1,10 +1,8 @@
 package com.musicapp.happi.apiConsumers.happi.service;
 
-import com.musicapp.happi.apiConsumers.happi.Properties;
+import com.musicapp.happi.apiConsumers.happi.HappiProperties;
 import com.musicapp.happi.apiConsumers.happi.model.DTO.*;
-import org.hobsoft.spring.resttemplatelogger.LoggingCustomizer;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -16,10 +14,10 @@ import java.util.Map;
 
 @Service
 public class HappiResponseGetterServiceImpl implements HappiResponseGetterService {
-    private final Properties properties;
+    private final HappiProperties properties;
 
     @Autowired
-    public HappiResponseGetterServiceImpl(Properties properties) {
+    public HappiResponseGetterServiceImpl(HappiProperties properties) {
         this.properties = properties;
     }
 

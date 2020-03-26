@@ -7,10 +7,10 @@ import org.springframework.context.annotation.PropertySource;
 
 @Configuration
 @Getter
-public class Properties {
+public class HappiProperties {
     @Value("${happi.url}")
     private String url;
 
-    @Value("${happi.authorizationKey}")
+    @Value("${happi.url}")
     private String authorizationKey;
 }

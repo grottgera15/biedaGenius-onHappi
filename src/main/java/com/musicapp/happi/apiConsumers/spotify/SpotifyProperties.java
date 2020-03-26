@@ -1,6 +1,6 @@
 package com.musicapp.happi.apiConsumers.spotify;
 
-import com.musicapp.happi.apiConsumers.SecretDataService;
+
 import com.musicapp.happi.apiConsumers.spotify.model.Token;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -22,9 +22,7 @@ import java.util.Base64;
 @Configuration
 @Getter
 @Setter
-public class Properties {
-
-    SecretDataService data;
+public class SpotifyProperties {
 
     @Value("${spotify.url}")
     public String urlAddress;
@@ -59,12 +57,10 @@ public class Properties {
     private void generateNewToken() {
         RestTemplate rest = new RestTemplate();
 
-        HttpEntity<String> header = generateHeader();
-
         MultiValueMap<String, String> uriVariables = new LinkedMultiValueMap<>();
         uriVariables.add("grant_type", "client_credentials");
 
-        setAccessToken(rest.postForEntity(getTokenUrlAdress(), header, Token.class, uriVariables).getBody().getAccess_token());
+        setAccessToken(rest.postForEntity(getTokenUrlAdress(), generateHeader(), Token.class, uriVariables).getBody().getAccess_token());
     }
 
     private HttpEntity<String> generateHeader() {
@@ -79,9 +75,5 @@ public class Properties {
         headers.set("Content-Type", "application/x-www-form-urlencoded");
 
         return new HttpEntity<String>(headers);
-    }
-
-    private update(){
-        setClientId(data.getDataFromAbsolutePath());
     }
 }

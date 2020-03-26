@@ -1,6 +1,6 @@
 package com.musicapp.happi.apiConsumers.spotify.service;
 
-import com.musicapp.happi.apiConsumers.spotify.Properties;
+import com.musicapp.happi.apiConsumers.spotify.SpotifyProperties;
 import com.musicapp.happi.apiConsumers.spotify.model.ArtistFull;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -12,7 +12,7 @@ import java.util.List;
 
 @Service
 public class SpotifyResponseGetterServiceImpl implements SpotifyResponseGetterService {
-    Properties properties;
+    SpotifyProperties properties;
 
     @Override
     public String requestUrlAddress(List<String> pathParams) {
