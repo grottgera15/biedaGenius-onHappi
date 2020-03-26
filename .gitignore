@@ -1,4 +1,4 @@
-*.txt
+*/secret/*
 
 HELP.md
 .gradle
