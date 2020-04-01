@@ -35,36 +35,7 @@ public class SpotifyProperties {
     @Value("${spotify.clientSecret}")
     private String clientSecret;
 
-    private String accessToken;
-
-    private LocalDateTime lastTokenGenerated = null;
-
-    private boolean needNewAccessToken(){
-        if(lastTokenGenerated == null){
-            return true;
-        }else if(lastTokenGenerated.plusSeconds(3600).isBefore(LocalDateTime.now()) || accessToken.length() < 4){
-            return true;
-        }
-        return false;
-    }
-
-    public String getActiveAccesToken(){
-        if(needNewAccessToken()){
-            generateNewToken();
-        }
-        return accessToken;
-    }
-
-    private void generateNewToken() {
-        RestTemplate rest = new RestTemplate();
-
-        MultiValueMap<String, String> uriVariables = new LinkedMultiValueMap<>();
-        uriVariables.add("grant_type", "client_credentials");
-
-        ;
-    }
-
-    private HttpEntity<String> generateHeader() {
+    public HttpHeaders generateHeaderForAccess() {
         HttpHeaders headers = new HttpHeaders();
         StringBuilder builder = new StringBuilder();
 
@@ -75,6 +46,6 @@ public class SpotifyProperties {
         headers.set("Authorization", "Basic " + Base64.getEncoder().encodeToString(builder.toString().getBytes()));
         headers.set("Content-Type", "application/x-www-form-urlencoded");
 
-        return new HttpEntity<String>(headers);
+        return headers;
     }
 }
