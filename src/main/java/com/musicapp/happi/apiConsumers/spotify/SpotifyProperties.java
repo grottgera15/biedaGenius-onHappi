@@ -21,7 +21,6 @@ import java.util.Base64;
 
 @Configuration
 @Getter
-@Setter
 public class SpotifyProperties {
 
     @Value("${spotify.url}")
@@ -30,8 +29,10 @@ public class SpotifyProperties {
     @Value("${spotify.tokenUrl}")
     private String tokenUrlAdress;
 
-    private String clientId;
+    //@Value("${spotify.clientId}")
+    private String clientId = System.getenv("CLIENT_ID");
 
+    @Value("${spotify.clientSecret}")
     private String clientSecret;
 
     private String accessToken;
@@ -41,7 +42,7 @@ public class SpotifyProperties {
     private boolean needNewAccessToken(){
         if(lastTokenGenerated == null){
             return true;
-        }else if(lastTokenGenerated.plusSeconds(3600).isBefore(LocalDateTime.now())){
+        }else if(lastTokenGenerated.plusSeconds(3600).isBefore(LocalDateTime.now()) || accessToken.length() < 4){
             return true;
         }
         return false;
@@ -60,7 +61,7 @@ public class SpotifyProperties {
         MultiValueMap<String, String> uriVariables = new LinkedMultiValueMap<>();
         uriVariables.add("grant_type", "client_credentials");
 
-        setAccessToken(rest.postForEntity(getTokenUrlAdress(), generateHeader(), Token.class, uriVariables).getBody().getAccess_token());
+        ;
     }
 
     private HttpEntity<String> generateHeader() {

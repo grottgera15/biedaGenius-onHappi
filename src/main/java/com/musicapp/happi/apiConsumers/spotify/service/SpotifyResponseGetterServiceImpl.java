@@ -12,11 +12,13 @@ import java.util.List;
 
 @Service
 public class SpotifyResponseGetterServiceImpl implements SpotifyResponseGetterService {
-    SpotifyProperties properties;
+    private final SpotifyProperties properties;
+
+    public SpotifyResponseGetterServiceImpl(SpotifyProperties properties) {this.properties= properties;}
 
     @Override
     public String requestUrlAddress(List<String> pathParams) {
-        return properties.urlAddress + addPathParams(pathParams);
+        return properties.getUrlAddress() /*+ addPathParams(pathParams)*/;
     }
 
     private String addPathParams(List<String> pathParams) {

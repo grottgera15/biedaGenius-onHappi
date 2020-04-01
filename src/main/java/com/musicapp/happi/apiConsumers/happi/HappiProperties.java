@@ -11,6 +11,6 @@ public class HappiProperties {
     @Value("${happi.url}")
     private String url;
 
-    @Value("${happi.url}")
+    @Value("${happi.authorizationKey}")
     private String authorizationKey;
 }
