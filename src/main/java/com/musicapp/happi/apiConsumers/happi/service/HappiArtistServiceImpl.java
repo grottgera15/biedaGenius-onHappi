@@ -1,6 +1,6 @@
 package com.musicapp.happi.apiConsumers.happi.service;
 
-import com.musicapp.happi.apiConsumers.ApiConsumer;
+
 import com.musicapp.happi.apiConsumers.happi.model.responseClass.Halbum;
 import com.musicapp.happi.apiConsumers.happi.model.responseClass.Hartist;
 import com.musicapp.happi.apiConsumers.happi.model.responseClass.Htrack;
